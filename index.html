@@ -7,7 +7,7 @@
 body{
     margin:0;
     overflow:hidden;
-    font-family: 'Segoe UI';
+    font-family:'Segoe UI';
     background: linear-gradient(120deg,#ff758c,#ff7eb3);
     text-align:center;
     color:white;
@@ -85,7 +85,6 @@ function createHeart(){
     heart.style.fontSize=(Math.random()*20+15)+"px";
     heart.style.animationDuration=(Math.random()*3+3)+"s";
     document.body.appendChild(heart);
-
     setTimeout(()=>heart.remove(),6000);
 }
 setInterval(createHeart,300);
@@ -96,20 +95,29 @@ function yesClicked(){
     document.getElementById("lovePage").style.display="block";
 }
 
-/* no move */
-let size=20;
+/* no button move + yes grow */
+let noSize=20;
+let yesSize=20;
+
 function moveNo(){
     let btn=document.getElementById("noBtn");
+
     let x=Math.random()*(window.innerWidth-100);
     let y=Math.random()*(window.innerHeight-50);
     btn.style.left=x+"px";
     btn.style.top=y+"px";
 
-    size-=1;
-    if(size>8){
-        btn.style.fontSize=size+"px";
-        btn.style.padding=(size/2)+"px "+size+"px";
+    /* shrink no */
+    noSize-=1;
+    if(noSize>8){
+        btn.style.fontSize=noSize+"px";
     }
+
+    /* grow yes */
+    let yes=document.getElementById("yesBtn");
+    yesSize+=5;
+    yes.style.fontSize=yesSize+"px";
+    yes.style.padding=(yesSize/2)+"px "+yesSize+"px";
 }
 </script>
 
