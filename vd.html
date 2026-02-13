@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Valentine ❤️</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family: 'Segoe UI';
+    background: linear-gradient(120deg,#ff758c,#ff7eb3);
+    text-align:center;
+    color:white;
+}
+
+/* floating hearts */
+.heart{
+    position:absolute;
+    color:#fff;
+    animation: float 6s linear infinite;
+    font-size:24px;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);}
+}
+
+.container{
+    margin-top:150px;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    margin:20px;
+    transition:0.3s;
+}
+
+#yesBtn{
+    background:#ff2e63;
+    color:white;
+}
+
+#noBtn{
+    background:#333;
+    color:white;
+    position:absolute;
+}
+
+#lovePage{
+    display:none;
+    font-size:40px;
+    margin-top:200px;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<div id="mainPage" class="container">
+    <h1>Will you be my Valentine? 💖</h1>
+    <button id="yesBtn" onclick="yesClicked()">Yes</button>
+    <button id="noBtn" onmouseover="moveNo()">No</button>
+</div>
+
+<div id="lovePage">
+    <h1>Yayyyy ❤️<br>I Love You So Much!</h1>
+</div>
+
+<script>
+/* floating hearts */
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    heart.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,300);
+
+/* yes click */
+function yesClicked(){
+    document.getElementById("mainPage").style.display="none";
+    document.getElementById("lovePage").style.display="block";
+}
+
+/* no move */
+let size=20;
+function moveNo(){
+    let btn=document.getElementById("noBtn");
+    let x=Math.random()*(window.innerWidth-100);
+    let y=Math.random()*(window.innerHeight-50);
+    btn.style.left=x+"px";
+    btn.style.top=y+"px";
+
+    size-=1;
+    if(size>8){
+        btn.style.fontSize=size+"px";
+        btn.style.padding=(size/2)+"px "+size+"px";
+    }
+}
+</script>
+
+</body>
+</html>
